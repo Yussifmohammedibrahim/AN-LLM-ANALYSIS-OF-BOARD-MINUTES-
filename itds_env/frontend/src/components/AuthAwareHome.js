@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
-import LoadingSpinner from './LoadingSpinner'; // Assume exists or create
+import LoadingSpinner from './LoadingSpinner';
+import LandingPage from './LandingPage';
 
 const AuthAwareHome = () => {
   const { loading, isAuthenticated } = useContext(AuthContext);
@@ -21,7 +22,7 @@ const AuthAwareHome = () => {
     return <Navigate to="/dashboard" replace />;
   }
 
-  return <Navigate to="/login" replace />;
+  return <LandingPage />;
 };
 
 export default AuthAwareHome;
