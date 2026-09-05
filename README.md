@@ -62,10 +62,10 @@ The frontend runs on the port selected by the React development server. The back
 The Docker image installs the backend dependencies, Tesseract, and FFmpeg. To start the configured services:
 
 ```powershell
-docker compose up --build
+docker compose --env-file itds_env/.env up --build
 ```
 
-Keep production secrets in environment variables or an untracked `.env` file. Persist the application database and uploaded files outside the container.
+Docker Compose passes the configured secrets and model settings to the backend and worker. Keep `itds_env/.env` untracked and persist the application database and uploaded files through the Docker volumes.
 
 ## Project Layout
 
