@@ -38,7 +38,7 @@ const LandingPage = () => (
   <div className="landing-page">
     <header className="landing-nav">
       <a className="landing-brand" href="#top" aria-label="Board Minutes home">
-        <span className="landing-brand-mark">BM</span>
+        <img src="/ITDS_LOGO.png" alt="" />
         <span>BOARD MINUTES</span>
       </a>
       <nav className="landing-nav-links" aria-label="Main navigation">
