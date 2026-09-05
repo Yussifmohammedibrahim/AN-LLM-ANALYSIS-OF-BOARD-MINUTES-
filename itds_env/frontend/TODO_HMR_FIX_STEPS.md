@@ -1,0 +1,1 @@
+- [x] Step 1: Kill dev server on port 3000 (PID 9204 terminated)

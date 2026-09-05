@@ -1,0 +1,112 @@
+version: '3.8'
+
+services:
+  # Redis message broker for background tasks
+  redis:
+    image: redis:7-alpine
+    container_name: itds-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  # Flask Web Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: itds-backend
+    restart: always
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      # Configure production secrets in your local .env file
+      - SECRET_KEY=${SECRET_KEY}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - SMTP_SERVER=${SMTP_SERVER}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - FROM_EMAIL=${FROM_EMAIL}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - HF_TOKEN=${HF_TOKEN}
+      - VAPID_PUBLIC_KEY=${VAPID_PUBLIC_KEY}
+      - VAPID_PRIVATE_KEY=${VAPID_PRIVATE_KEY}
+      - VAPID_SUBJECT=${VAPID_SUBJECT}
+      # Configuration variables for models and runtime limits
+      - ITDS_ASR_MODEL=${ITDS_ASR_MODEL:-openai/whisper-tiny.en}
+      - ITDS_NER_MODEL=${ITDS_NER_MODEL:-dbmdz/bert-large-cased-finetuned-conll03-english}
+      - ITDS_QA_MODEL=${ITDS_QA_MODEL:-distilbert-base-cased-distilled-squad}
+      - SENTIMENT_MODEL=${SENTIMENT_MODEL:-cardiffnlp/twitter-roberta-base-sentiment-latest}
+      - SENTIMENT_MODEL_FALLBACKS=${SENTIMENT_MODEL_FALLBACKS}
+      - SUMMARIZER_MODEL=${SUMMARIZER_MODEL:-philschmid/bart-large-cnn-samsum}
+      - SUMMARIZER_MODEL_FALLBACKS=${SUMMARIZER_MODEL_FALLBACKS}
+      - TOPIC_EMBEDDING_MODEL=${TOPIC_EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+      - ZERO_SHOT_MODEL=${ZERO_SHOT_MODEL:-MoritzLaurer/deberta-v3-base-zeroshot-v2.0}
+      - ZERO_SHOT_MODEL_FALLBACKS=${ZERO_SHOT_MODEL_FALLBACKS}
+    volumes:
+      # Persist backend uploads and SQLite database
+      - backend_data:/data
+      # Cache Hugging Face models so they do not download on every container restart
+      - hf_cache:/root/.cache/huggingface
+    ports:
+      - "5001:5001"
+    depends_on:
+      - redis
+
+  # Background Worker for queueing slow tasks (speech to text, report compilation)
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: itds-worker
+    command: python run_worker.py
+    restart: always
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=${SECRET_KEY}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - SMTP_SERVER=${SMTP_SERVER}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - FROM_EMAIL=${FROM_EMAIL}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - HF_TOKEN=${HF_TOKEN}
+      - VAPID_PUBLIC_KEY=${VAPID_PUBLIC_KEY}
+      - VAPID_PRIVATE_KEY=${VAPID_PRIVATE_KEY}
+      - VAPID_SUBJECT=${VAPID_SUBJECT}
+      # Configuration variables for models and runtime limits
+      - ITDS_ASR_MODEL=${ITDS_ASR_MODEL:-openai/whisper-tiny.en}
+      - ITDS_NER_MODEL=${ITDS_NER_MODEL:-dbmdz/bert-large-cased-finetuned-conll03-english}
+      - ITDS_QA_MODEL=${ITDS_QA_MODEL:-distilbert-base-cased-distilled-squad}
+      - SENTIMENT_MODEL=${SENTIMENT_MODEL:-cardiffnlp/twitter-roberta-base-sentiment-latest}
+      - SUMMARIZER_MODEL=${SUMMARIZER_MODEL:-philschmid/bart-large-cnn-samsum}
+      - TOPIC_EMBEDDING_MODEL=${TOPIC_EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+      - ZERO_SHOT_MODEL=${ZERO_SHOT_MODEL:-MoritzLaurer/deberta-v3-base-zeroshot-v2.0}
+    volumes:
+      # Share sqlite DB file and uploaded media with backend
+      - backend_data:/data
+      - hf_cache:/root/.cache/huggingface
+    depends_on:
+      - redis
+      - backend
+
+  # Nginx Frontend Web Server
+  frontend:
+    build:
+      context: ./itds_env/frontend
+      dockerfile: Dockerfile
+    container_name: itds-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  redis_data:
+  backend_data:
+  hf_cache:

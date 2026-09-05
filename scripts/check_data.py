@@ -1,0 +1,12 @@
+import sqlite3
+conn = sqlite3.connect('itds_env/itds_minutes.db')
+c = conn.cursor()
+c.execute('SELECT COUNT(*) FROM Meetings')
+print('Meetings:', c.fetchone()[0])
+c.execute('SELECT COUNT(*) FROM Segments')
+print('Segments:', c.fetchone()[0])
+c.execute('SELECT COUNT(*) FROM Themes')
+print('Themes:', c.fetchone()[0])
+c.execute('SELECT COUNT(*) FROM Users')
+print('Users:', c.fetchone()[0])
+conn.close()

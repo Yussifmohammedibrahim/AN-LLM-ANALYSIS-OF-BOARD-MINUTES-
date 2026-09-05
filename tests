@@ -1,0 +1,45 @@
+"""Test API endpoints"""
+import sys
+sys.path.insert(0, 'itds_env')
+
+# Test app imports
+try:
+    from app.app import app
+    print("✅ Flask app imported successfully")
+    
+    # Get registered routes
+    routes = [str(rule) for rule in app.url_map.iter_rules()]
+    print(f"\n📋 Total API Routes: {len(routes)}")
+    
+    # Group routes by category
+    auth_routes = [r for r in routes if '/auth/' in r]
+    meeting_routes = [r for r in routes if '/meetings' in r]
+    analysis_routes = [r for r in routes if '/analysis' in r or '/themes' in r]
+    other_routes = [r for r in routes if r not in auth_routes + meeting_routes + analysis_routes]
+    
+    print("\n🔐 Authentication Routes:")
+    for r in auth_routes:
+        methods = [m for m in app.url_map.iter_rules() if str(m) == r][0].methods
+        print(f"   {r} - {methods}")
+    
+    print("\n📅 Meeting Routes:")
+    for r in meeting_routes:
+        methods = [m for m in app.url_map.iter_rules() if str(m) == r][0].methods
+        print(f"   {r} - {methods}")
+    
+    print("\n📊 Analysis Routes:")
+    for r in analysis_routes:
+        methods = [m for m in app.url_map.iter_rules() if str(m) == r][0].methods
+        print(f"   {r} - {methods}")
+    
+    print("\n🔍 Other Routes:")
+    for r in other_routes:
+        methods = [m for m in app.url_map.iter_rules() if str(m) == r][0].methods
+        print(f"   {r} - {methods}")
+        
+    print("\n✅ Backend API is ready to serve!")
+    
+except Exception as e:
+    print(f"❌ Error: {e}")
+    import traceback
+    traceback.print_exc()

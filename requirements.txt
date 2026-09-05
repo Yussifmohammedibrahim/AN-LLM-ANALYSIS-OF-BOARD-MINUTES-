@@ -1,0 +1,40 @@
+# Core
+transformers>=4.21.0
+sentence-transformers>=2.2.2
+hdbscan>=0.8.37
+bertopic>=0.16.4
+PyPDF2>=3.0.1
+PyMuPDF>=1.26.4
+python-docx>=0.8.11
+pytesseract>=0.3.10
+Pillow>=10.0.0
+flask>=2.3.2
+flask-cors>=4.0.0
+flask-login>=0.6.2
+flask-sqlalchemy>=3.0.5
+flask-jwt-extended>=4.5.2
+werkzeug>=2.3.6
+
+# Data & Analysis (use wheel-compatible versions to avoid C++ compilation on Windows)
+pandas>=2.0.0
+numpy>=1.26.0
+scikit-learn>=1.3.0
+plotly>=5.14.1
+matplotlib>=3.8.0
+
+# Security
+cryptography==41.0.3
+bcrypt==4.0.1
+bleach==6.0.0
+
+# Utilities
+python-dotenv==1.0.0
+requests>=2.31.0
+user-agents==2.2.0
+reportlab>=4.0.0
+redis>=5.0.0
+rq>=1.16.0,<2.0.0
+pywebpush>=2.0.3
+flasgger>=0.9.5
+openai>=1.0.0
+python-pptx>=0.6.21

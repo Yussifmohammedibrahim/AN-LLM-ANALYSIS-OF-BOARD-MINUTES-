@@ -1,0 +1,31 @@
+{
+  "dataset_size": 2,
+  "tasks": {
+    "summarization": {
+      "count": 2,
+      "token_f1_avg": 0.1889
+    },
+    "sentiment": {
+      "count": 2,
+      "accuracy": 0.5
+    },
+    "zero_shot": {
+      "count": 2,
+      "accuracy": 1.0
+    },
+    "ner": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "topics": {
+      "count": 2,
+      "keyword_precision_avg": 0.0,
+      "keyword_recall_avg": 0.0
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,6 @@
+.itds-sidebar{width:220px;min-height:100vh;background:#0f1724;color:#fff;position:fixed;left:0;top:0;padding:18px 12px;box-sizing:border-box;z-index:20}
+.itds-sidebar ul{list-style:none;padding:0;margin:0}
+.itds-sidebar li{margin:8px 0}
+.itds-sidebar a{color:#cbd5e1;text-decoration:none;display:block;padding:8px 10px;border-radius:6px}
+.itds-sidebar a.active, .itds-sidebar a:hover{background:#111827;color:#fff}
+@media (max-width:800px){.itds-sidebar{position:relative;width:100%;min-height:auto;padding:8px 10px;display:flex;overflow-x:auto}.itds-sidebar ul{display:flex;gap:8px}.itds-sidebar li{margin:0}}

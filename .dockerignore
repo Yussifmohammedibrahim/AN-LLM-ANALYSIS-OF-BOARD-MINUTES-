@@ -1,0 +1,42 @@
+# Version Control
+.git
+.gitignore
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Python Virtual Environment files inside itds_env
+itds_env/Lib/
+itds_env/Scripts/
+itds_env/Include/
+itds_env/share/
+itds_env/pyvenv.cfg
+itds_env/pip-selfcheck.json
+itds_env/.env
+
+# Node.js dependencies and builds
+node_modules/
+itds_env/frontend/node_modules/
+itds_env/frontend/build/
+
+# Local databases and logs
+*.db
+*.db-journal
+*.log
+*.log.*
+itds_env/app/itds.db
+itds_env/app/app.log
+
+# Uploads
+uploads/
+itds_env/uploads/
+itds_env/frontend/uploads/
+
+# IDE files
+.vscode/
+.idea/
+.DS_Store
+*.bak

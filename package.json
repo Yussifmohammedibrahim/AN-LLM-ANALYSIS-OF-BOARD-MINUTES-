@@ -1,0 +1,13 @@
+{
+  "name": "itds-frameworks",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd itds_env/frontend && npm start",
+    "build": "cd itds_env/frontend && npm run build",
+    "install:all": "cd itds_env/frontend && npm install",
+    "start:backend": "cd itds_env && flask --app app.app run --port=5000"
+  },
+  "devDependencies": {},
+  "workspaces": ["itds_env/frontend"]
+}
