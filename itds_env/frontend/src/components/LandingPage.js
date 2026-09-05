@@ -9,7 +9,6 @@ import {
   LockKeyhole,
   Search,
   ShieldCheck,
-  Sparkles,
   Upload,
 } from 'lucide-react';
 import './LandingPage.css';
@@ -22,15 +21,15 @@ const capabilities = [
     description: 'Upload board documents and recordings into one searchable workspace, ready for review and analysis.',
   },
   {
-    icon: Sparkles,
+    icon: BarChart3,
     number: '02',
-    title: 'Turn content into signal',
-    description: 'Surface summaries, topics, sentiment, entities, and trends without losing the original context.',
+    title: 'Review what matters',
+    description: 'Organise summaries, topics, actions, and trends without losing the original meeting context.',
   },
   {
     icon: BarChart3,
     number: '03',
-    title: 'Move from insight to action',
+    title: 'Report with confidence',
     description: 'Share reports, follow themes over time, and give leadership a clearer view of what needs attention.',
   },
 ];
@@ -38,9 +37,9 @@ const capabilities = [
 const LandingPage = () => (
   <div className="landing-page">
     <header className="landing-nav">
-      <a className="landing-brand" href="#top" aria-label="ITDS home">
-        <img src="/ITDS_LOGO.png" alt="" />
-        <span>ITDS</span>
+      <a className="landing-brand" href="#top" aria-label="Board Minutes home">
+        <span className="landing-brand-mark">BM</span>
+        <span>BOARD MINUTES</span>
       </a>
       <nav className="landing-nav-links" aria-label="Main navigation">
         <a href="#capabilities">Capabilities</a>
@@ -55,10 +54,10 @@ const LandingPage = () => (
     <main id="top">
       <section className="landing-hero">
         <div className="landing-hero-copy">
-          <p className="landing-eyebrow"><span /> Board intelligence, made usable</p>
-          <h1>Make every board meeting easier to understand.</h1>
+          <p className="landing-eyebrow"><span /> Board governance workspace</p>
+          <h1>Bring clarity to every board meeting.</h1>
           <p className="landing-hero-lede">
-            ITDS helps teams turn meeting minutes and recordings into structured insight, so decisions do not disappear into documents.
+            Board Minutes gives directors, secretaries, and leadership teams one dependable place to review meeting records, track decisions, and follow actions through.
           </p>
           <div className="landing-hero-actions">
             <Link className="landing-primary-button" to="/login">
@@ -74,15 +73,15 @@ const LandingPage = () => (
           </div>
         </div>
 
-        <div className="landing-hero-visual" aria-label="Preview of the ITDS analysis workspace">
+        <div className="landing-hero-visual" aria-label="Preview of the Board Minutes workspace">
           <div className="landing-visual-topline">
             <span className="landing-window-dots"><i /><i /><i /></span>
-            <span>Meeting intelligence / Q2 review</span>
+            <span>Board records / Q2 review</span>
             <span className="landing-live-status"><b /> Ready</span>
           </div>
           <div className="landing-visual-body">
             <div className="landing-visual-sidebar">
-              <span className="landing-mini-logo">I</span>
+              <span className="landing-mini-logo">BM</span>
               <span className="landing-sidebar-line active" />
               <span className="landing-sidebar-line" />
               <span className="landing-sidebar-line" />
@@ -105,9 +104,9 @@ const LandingPage = () => (
                   <div className="landing-chart-labels"><span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span></div>
                 </div>
                 <div className="landing-insight-panel">
-                  <div className="landing-panel-title"><span>Priority insight</span><Sparkles size={15} /></div>
-                  <p>Operational resilience is now the dominant theme across recent meetings.</p>
-                  <div className="landing-insight-tag">3 mentions rising</div>
+                  <div className="landing-panel-title"><span>Priority action</span><Check size={15} /></div>
+                  <p>Confirm the operational resilience review before the next committee meeting.</p>
+                  <div className="landing-insight-tag">Due 28 Jun 2026</div>
                 </div>
               </div>
               <div className="landing-preview-footer"><span><Check size={14} /> Analysis complete</span><span>View report <ArrowRight size={14} /></span></div>
@@ -122,7 +121,7 @@ const LandingPage = () => (
 
       <section className="landing-section landing-capabilities" id="capabilities">
         <div className="landing-section-heading">
-          <p className="landing-eyebrow"><span /> One connected system</p>
+          <p className="landing-eyebrow"><span /> One connected record</p>
           <h2>Less time sorting information.<br /><em>More time acting on it.</em></h2>
           <p>Designed for the full rhythm of governance work, from the first upload to the final report.</p>
         </div>
@@ -139,21 +138,21 @@ const LandingPage = () => (
       </section>
 
       <section className="landing-section landing-workflow" id="workflow">
-        <div className="landing-workflow-mark"><Upload size={25} /><span>ITDS<br />WORKFLOW</span></div>
+        <div className="landing-workflow-mark"><Upload size={25} /><span>BOARD<br />WORKFLOW</span></div>
         <div className="landing-workflow-copy">
-          <p className="landing-eyebrow"><span /> From source to signal</p>
+          <p className="landing-eyebrow"><span /> From record to action</p>
           <h2>A workflow your team can trust.</h2>
-          <p>Keep the source material, analysis, and decisions connected. Every insight can be traced back to the meeting context that created it.</p>
+          <p>Keep the agenda, minutes, decisions, and follow-up work connected. Every action remains tied to the meeting record that created it.</p>
           <div className="landing-workflow-list">
             <div><span>1</span><p><strong>Upload</strong> PDF, DOCX, or audio meeting material.</p></div>
-            <div><span>2</span><p><strong>Analyse</strong> content with summaries, themes, and intelligent search.</p></div>
+            <div><span>2</span><p><strong>Review</strong> decisions, actions, themes, and supporting context.</p></div>
             <div><span>3</span><p><strong>Report</strong> findings in a format that leadership can use.</p></div>
           </div>
         </div>
         <div className="landing-workflow-quote">
           <Search size={20} aria-hidden="true" />
           <p>“Find the thread across meetings, not just the sentence in front of you.”</p>
-          <span>— The ITDS approach</span>
+          <span>— The Board Minutes approach</span>
         </div>
       </section>
 
@@ -170,12 +169,12 @@ const LandingPage = () => (
       </section>
 
       <section className="landing-cta">
-        <div><p className="landing-eyebrow"><span /> Ready when your next meeting is</p><h2>Give your board materials<br /><em>a longer life.</em></h2></div>
-        <Link className="landing-primary-button" to="/login">Open ITDS workspace <ArrowRight size={18} aria-hidden="true" /></Link>
+        <div><p className="landing-eyebrow"><span /> Ready for your next meeting</p><h2>Make board records<br /><em>work harder.</em></h2></div>
+        <Link className="landing-primary-button" to="/login">Open Board Minutes <ArrowRight size={18} aria-hidden="true" /></Link>
       </section>
     </main>
 
-    <footer className="landing-footer"><span>© 2026 ITDS</span><span>Board intelligence for clearer decisions</span><span>Secure workspace access</span></footer>
+    <footer className="landing-footer"><span>© 2026 Board Minutes</span><span>Governance records for clearer decisions</span><span>Secure workspace access</span></footer>
   </div>
 );
 

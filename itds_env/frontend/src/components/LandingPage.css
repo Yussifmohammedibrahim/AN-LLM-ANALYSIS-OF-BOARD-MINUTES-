@@ -1,24 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+.landing-section h2 em,
+.landing-cta h2 em,
+.landing-workflow-quote p {
+  color: inherit !important;
+  font-family: 'IBM Plex Sans', sans-serif !important;
+  font-style: normal !important;
+}
+
+@media (max-width: 680px) {
+  .landing-hero-visual {
+    box-shadow: none !important;
+    transform: none !important;
+  }
+}
 
 .landing-page {
-  --ink: #152a25;
-  --muted: #677873;
-  --paper: #f4f6f1;
-  --line: #d5ddd5;
-  --green: #0e5545;
-  --acid: #c7f277;
-  --orange: #e87343;
+  --ink: #172b42;
+  --muted: #617083;
+  --paper: #f5f7f9;
+  --line: #d7dfe7;
+  --green: #183d63;
+  --acid: #e8eef4;
+  --orange: #8a5b34;
   min-height: 100vh;
   color: var(--ink);
   background: var(--paper);
-  font-family: 'Manrope', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   overflow: hidden;
 }
 
 .landing-page a { color: inherit; }
 .landing-nav { align-items: center; display: flex; height: 82px; justify-content: space-between; margin: 0 auto; max-width: 1360px; padding: 0 5vw; }
 .landing-brand { align-items: center; display: flex; font-size: 1rem; font-weight: 800; gap: 10px; letter-spacing: .08em; text-decoration: none; }
-.landing-brand img { height: 30px; object-fit: contain; width: 30px; }
+.landing-brand-mark { align-items: center; background: var(--green); color: #fff; display: flex; font-family: 'DM Mono', monospace; font-size: .62rem; height: 30px; justify-content: center; letter-spacing: -.08em; width: 30px; }
 .landing-nav-links { display: flex; gap: 32px; margin-left: 100px; }
 .landing-nav-links a { color: var(--muted); font-size: .73rem; font-weight: 700; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
 .landing-nav-links a:hover { color: var(--green); }
@@ -36,7 +51,7 @@
 .landing-text-link { border-bottom: 1px solid var(--ink); font-size: .75rem; font-weight: 800; padding-bottom: 3px; text-decoration: none; }
 .landing-trust-line { align-items: center; color: var(--muted); display: flex; font-size: .7rem; gap: 8px; margin-top: 54px; }
 .landing-trust-line svg { color: var(--green); }
-.landing-hero-visual { background: var(--green); box-shadow: 22px 24px 0 rgba(199, 242, 119, .72); color: #fff; min-width: 0; padding: 13px; transform: rotate(2deg); }
+.landing-hero-visual { background: var(--green); border: 1px solid #102f4d; color: #fff; min-width: 0; padding: 13px; }
 .landing-visual-topline { align-items: center; color: rgba(255,255,255,.66); display: flex; font-family: 'DM Mono', monospace; font-size: .55rem; gap: 12px; justify-content: space-between; letter-spacing: .04em; padding: 2px 4px 14px; }
 .landing-window-dots { display: flex; gap: 4px; }
 .landing-window-dots i { background: #5f8b7e; border-radius: 50%; height: 5px; width: 5px; }
@@ -44,7 +59,7 @@
 .landing-live-status b { background: var(--acid); border-radius: 50%; height: 5px; width: 5px; }
 .landing-visual-body { background: #f7f9f3; color: var(--ink); display: flex; min-height: 390px; }
 .landing-visual-sidebar { align-items: center; background: #e9eee7; display: flex; flex-direction: column; gap: 19px; padding: 18px 12px; width: 55px; }
-.landing-mini-logo { align-items: center; background: var(--orange); color: #fff; display: flex; font-size: .8rem; font-weight: 800; height: 25px; justify-content: center; width: 25px; }
+.landing-mini-logo { align-items: center; background: var(--green); border: 1px solid #91a8bc; color: #fff; display: flex; font-family: 'DM Mono', monospace; font-size: .52rem; font-weight: 500; height: 25px; justify-content: center; width: 25px; }
 .landing-sidebar-line { background: #b9c9bf; height: 8px; width: 18px; }.landing-sidebar-line.active { background: var(--green); }.landing-sidebar-line.short { width: 13px; }
 .landing-dashboard-preview { flex: 1; min-width: 0; padding: 29px 27px 20px; }
 .landing-preview-heading { align-items: flex-end; display: flex; justify-content: space-between; }.landing-preview-heading small { color: var(--orange); display: block; font-family: 'DM Mono', monospace; font-size: .48rem; letter-spacing: .1em; margin-bottom: 6px; }.landing-preview-heading strong { font-size: 1.13rem; letter-spacing: -.04em; }.landing-preview-date { color: #8a9990; font-family: 'DM Mono', monospace; font-size: .49rem; }
